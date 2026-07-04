@@ -3,3 +3,6 @@ dist/
 
 cppcnn-presentation.zip
 run_server.bat
+
+# Exported PDF
+slides-export.pdf
