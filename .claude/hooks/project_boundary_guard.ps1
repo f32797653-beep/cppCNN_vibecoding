@@ -19,9 +19,27 @@ function Test-Within([string]$Path, [string]$Root) {
         $fullPath.StartsWith($fullRoot + "\", [System.StringComparison]::OrdinalIgnoreCase)
 }
 
-$payload = [Console]::In.ReadToEnd() | ConvertFrom-Json
-$projectRoot = [System.IO.Path]::GetFullPath($env:CLAUDE_PROJECT_DIR)
-$cwd = [System.IO.Path]::GetFullPath([string]$payload.cwd)
+$raw = [Console]::In.ReadToEnd()
+if ([string]::IsNullOrWhiteSpace($raw)) {
+    exit 0
+}
+
+try {
+    $payload = $raw | ConvertFrom-Json -ErrorAction Stop
+}
+catch {
+    Deny "Blocked: invalid project boundary hook payload."
+}
+
+$projectRootRaw = if ($env:CLAUDE_PROJECT_DIR) {
+    $env:CLAUDE_PROJECT_DIR
+}
+else {
+    Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..\..")
+}
+$projectRoot = [System.IO.Path]::GetFullPath([string]$projectRootRaw)
+$cwdRaw = if ($payload.cwd) { [string]$payload.cwd } else { $projectRoot }
+$cwd = [System.IO.Path]::GetFullPath($cwdRaw)
 $toolName = [string]$payload.tool_name
 $toolInput = $payload.tool_input
 
