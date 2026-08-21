@@ -2,12 +2,14 @@
 
 本仓库比较不同 AI 协作平台完成 CNN 项目的实现方式。各一级目录是相互独立的技术路线，不共享数据集、模型格式或运行时依赖。
 
+> **已归档 / Archived — effective 2026-08-21.** 本项目作为完成的课程项目按现状保留，不再维护，也不提供功能、兼容性或安全修复支持。This completed course project is retained as-is; no further maintenance, feature work, compatibility work, or security fixes will be provided. See [ARCHIVED.md](ARCHIVED.md) for the final-state policy; users may fork the repository for their own work.
+
 | 目录 | 技术路线 | 定位 | 状态 |
 | --- | --- | --- | --- |
-| [`codex/`](codex/) | C++17、手写 CNN、Qt Quick | 课程主交付：GTSRB 交通标志识别 | `v2.0.0`，含 10 类演示模型与 43 类 Enhanced 模型 |
+| [`codex/`](codex/) | C++17、手写 CNN、Qt Quick | 课程主交付：GTSRB 交通标志识别 | 最终版本 `v2.1.0`，含 10 类演示模型与 43 类 Enhanced 模型 |
 | [`claude/`](claude/) | Python、PyTorch、控制台 | 对照原型：车标分类 | 源码与 23 项单元测试完整，尚无数据集和训练权重 |
 
-## 当前发布
+## 最终发布 / Final release
 
 - [下载最新 GitHub Release](https://github.com/AnieerLhayK/cppCNN_vibecoding/releases/latest)
 - [Codex 主实现说明](codex/README.md)
@@ -15,7 +17,7 @@
 - [Codex 项目报告](codex/docs/project_report.md)
 - [版本变化](codex/CHANGELOG.md)
 
-GitHub Release 的 Windows x64 ZIP 是 `codex/` 主实现的教师演示包，包含可执行程序、Qt 运行库、默认 10 类模型、完整 43 类 Enhanced 模型、标签、50 张多类别演示图片和 AI 使用记录。`claude/` 随源码标签发布，不提供预训练权重或独立可执行包。
+`v2.1.0` 是保留的最终 GitHub Release。其 Windows x64 ZIP 是 `codex/` 主实现的教师演示包，包含可执行程序、Qt 运行库、默认 10 类模型、完整 43 类 Enhanced 模型、标签、50 张多类别演示图片和 AI 使用记录。`claude/` 随源码标签发布，不提供预训练权重或独立可执行包。现有 Release、源码、标签与提交历史仅按现状提供，不会再更新。
 
 不会使用 Git 或开发工具的报告协作者，可以在最新 Release 下载
 `cppCNN-Codex-Report-Kit-v2.0.0.zip`。该资料包只包含 Codex 版本，内含可运行程序、完整课程源码、报告材料、AI 使用记录和中文入门指南。
@@ -23,7 +25,7 @@ GitHub Release 的 Windows x64 ZIP 是 `codex/` 主实现的教师演示包，�
 ## 仓库约定
 
 - 数据集、训练权重、缓存和临时构建产物不进入 Git。
-- 每种实现独立维护源码、配置、测试和文档。
+- 两种实现的源码、配置、测试和文档彼此独立；它们均已停止维护。
 - `codex/` 满足纯 C++ CNN 课程要求，不调用深度学习框架。
 - `claude/` 使用 PyTorch，仅用于技术路线比较，不能替代纯 C++ 主交付。
 

@@ -1,8 +1,10 @@
 # 纯 C++ CNN 交通标志识别系统
 
+> **已归档 / Archived — effective 2026-08-21.** 本实现及其 Release 按现状保留，不再接受功能、兼容性或安全修复请求。This implementation and its releases are retained as-is; no further maintenance, feature work, compatibility work, or security fixes will be provided. See the repository [archive policy](../ARCHIVED.md); fork the project for independent continuation.
+
 ## 项目简介
 
-这是 `cppCNN_vibecoding` 仓库的 Codex 主实现，当前稳定版本为 `v2.0.0`。项目使用 C++17 从零实现 CNN 的 Tensor、卷积、池化、激活、全连接、Softmax、损失、训练统计和模型持久化，并使用 Qt Quick/QML 提供现代桌面界面。
+这是 `cppCNN_vibecoding` 仓库的 Codex 主实现，最终保留版本为 `v2.1.0`。项目使用 C++17 从零实现 CNN 的 Tensor、卷积、池化、激活、全连接、Softmax、损失、训练统计和模型持久化，并使用 Qt Quick/QML 提供现代桌面界面。
 
 OpenCV 是可选依赖，仅用于 CLI 的常见图片读取和显示。Qt GUI 使用 `QImage` 读取 PPM、PNG、JPEG 和 BMP，不依赖 OpenCV，也不使用 PyTorch、TensorFlow 或 Keras。
 
@@ -12,7 +14,7 @@ OpenCV 是可选依赖，仅用于 CLI 的常见图片读取和显示。Qt GUI �
 
 不需要开发环境时，可从 [GitHub Releases](https://github.com/AnieerLhayK/cppCNN_vibecoding/releases/latest) 下载 Windows x64 ZIP。完整解压后双击 `run_demo.bat`，无需安装 Qt、Visual Studio、Python、OpenCV 或数据集，也无需重新训练。
 
-模型权重不会进入 Git 历史，但会作为便携 ZIP 的组成部分发布。校验方式和维护流程见 [`docs/release_guide.md`](docs/release_guide.md)。
+模型权重未进入 Git 历史，但已作为既有便携 ZIP 的组成部分保留。有关这些历史资产的校验和复现说明见 [`docs/release_guide.md`](docs/release_guide.md)；该指南不构成新的发布或维护承诺。
 
 需要撰写课程报告但不熟悉 GitHub 或工程结构时，请下载同一 Release 中的
 `cppCNN-Codex-Report-Kit-v2.0.0.zip`。它只包含 Codex 版本，整理了便携程序、源码、报告材料、AI 使用记录、代码阅读顺序和答辩指南。
@@ -233,7 +235,9 @@ cmake --build build_libtorch --config Release
 
 > **注意**：GPU 验证阶段存在已知的 CUDA 兼容性问题，当前回退到 CPU 执行验证和评估，不影响训练速度。
 
-## Release 演示包
+## 既有 Release 演示包 / Archived release assets
+
+以下内容记录 `v2.1.0` 及此前演示包的历史生成方式，仅供审计与复现参考。项目已停止维护；不得将其视为新 Release 或支持承诺。
 
 生成本机便携包：
 
@@ -295,10 +299,12 @@ codex/
 - Git 仓库不包含 GTSRB 和模型权重；需下载、训练或使用本地 Release 包。
 - Qt 官方部署会产生约 102 MiB 的本地便携目录。
 
-## 后续改进
+## 历史可扩展方向 / Historical extension directions
+
+以下是归档前记录的潜在 fork 方向，不是本项目的路线图或维护承诺：
 
 - 使用 OpenMP、SIMD 或 im2col 加速卷积
 - 增加数据增强、验证集、早停和学习率调度
 - 增加混淆矩阵、每类准确率和批量预测页
-- 训练完整 43 类模型并作为后续 GitHub Release 资产发布
+- 训练完整 43 类模型并在 fork 中自行管理发布资产
 - 增加 GUI 内训练进度、模型管理和中英文切换
